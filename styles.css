@@ -1,0 +1,254 @@
+:root {
+  color-scheme: light;
+  --ink: #1d2433;
+  --muted: #657084;
+  --paper: #f7f5ee;
+  --panel: #ffffff;
+  --grid: #263245;
+  --x: #e0475b;
+  --o: #217f76;
+  --accent: #f0b429;
+  --shadow: 0 24px 70px rgba(29, 36, 51, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(135deg, rgba(240, 180, 41, 0.18), transparent 32%),
+    linear-gradient(315deg, rgba(33, 127, 118, 0.18), transparent 35%),
+    var(--paper);
+  color: var(--ink);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+.app {
+  width: min(920px, calc(100vw - 32px));
+  display: grid;
+  grid-template-columns: minmax(260px, 0.85fr) minmax(320px, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.scoreboard,
+.game-shell {
+  background: rgba(255, 255, 255, 0.86);
+  border: 2px solid rgba(38, 50, 69, 0.12);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.scoreboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px;
+  min-height: 460px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--o);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 4rem, 4.25rem);
+  line-height: 0.98;
+}
+
+.scores {
+  display: grid;
+  gap: 12px;
+}
+
+.score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+  padding: 14px 16px;
+  border: 2px solid rgba(38, 50, 69, 0.12);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.score.active {
+  border-color: var(--accent);
+}
+
+.score span {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.score strong {
+  font-size: 2rem;
+}
+
+.game-shell {
+  padding: 22px;
+}
+
+.status-bar,
+.controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#status {
+  min-height: 32px;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.board {
+  width: 100%;
+  aspect-ratio: 1;
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.cell {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 8px;
+  background: var(--grid);
+  color: var(--panel);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: clamp(3rem, 12vw, 5.8rem);
+  font-weight: 900;
+  line-height: 1;
+  transition: transform 150ms ease, background 150ms ease;
+}
+
+.cell:hover,
+.cell:focus-visible {
+  background: #36445b;
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  transform: translateY(-2px);
+}
+
+.cell.x {
+  color: var(--x);
+  background:
+    linear-gradient(135deg, rgba(224, 71, 91, 0.18), transparent),
+    var(--grid);
+}
+
+.cell.o {
+  color: var(--o);
+  background:
+    linear-gradient(135deg, rgba(33, 127, 118, 0.2), transparent),
+    var(--grid);
+}
+
+.cell.win {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.cell:disabled {
+  cursor: default;
+}
+
+.cell:disabled:hover {
+  transform: none;
+  outline: none;
+}
+
+.controls button,
+.ghost-button {
+  min-height: 44px;
+  border: 2px solid var(--grid);
+  border-radius: 8px;
+  background: var(--grid);
+  color: white;
+  cursor: pointer;
+  font-weight: 800;
+  padding: 0 16px;
+}
+
+.ghost-button {
+  background: transparent;
+  color: var(--grid);
+}
+
+.controls button:hover,
+.ghost-button:hover,
+.controls button:focus-visible,
+.ghost-button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  body {
+    align-items: start;
+    padding: 18px 0;
+  }
+
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  .scoreboard {
+    min-height: auto;
+    gap: 22px;
+    padding: 22px;
+  }
+
+  .scores {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .score {
+    min-height: 82px;
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+@media (max-width: 430px) {
+  .app {
+    width: min(100% - 20px, 920px);
+  }
+
+  .status-bar,
+  .controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .controls button,
+  .ghost-button {
+    width: 100%;
+  }
+
+  .board {
+    gap: 7px;
+  }
+}
