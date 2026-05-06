@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app" aria-labelledby="game-title">
+    <section class="scoreboard" aria-label="Scoreboard">
+      <div>
+        <p class="eyebrow">Local Match</p>
+        <h1 id="game-title">Tic Tac Toe</h1>
+      </div>
+      <div class="scores">
+        <div class="score active" data-score-card="x">
+          <span>X</span>
+          <strong id="score-x">0</strong>
+        </div>
+        <div class="score" data-score-card="draw">
+          <span>Draw</span>
+          <strong id="score-draw">0</strong>
+        </div>
+        <div class="score" data-score-card="o">
+          <span>O</span>
+          <strong id="score-o">0</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="game-shell" aria-label="Tic Tac Toe board">
+      <div class="status-bar">
+        <p id="status" aria-live="polite">Player X's turn</p>
+        <button class="ghost-button" id="new-round" type="button">New Round</button>
+      </div>
+
+      <div class="board" id="board" role="grid" aria-label="Tic Tac Toe squares">
+        <button class="cell" type="button" role="gridcell" aria-label="Top left square" data-index="0"></button>
+        <button class="cell" type="button" role="gridcell" aria-label="Top middle square" data-index="1"></button>
+        <button class="cell" type="button" role="gridcell" aria-label="Top right square" data-index="2"></button>
+        <button class="cell" type="button" role="gridcell" aria-label="Middle left square" data-index="3"></button>
+        <button class="cell" type="button" role="gridcell" aria-label="Center square" data-index="4"></button>
+        <button class="cell" type="button" role="gridcell" aria-label="Middle right square" data-index="5"></button>
+        <button class="cell" type="button" role="gridcell" aria-label="Bottom left square" data-index="6"></button>
+        <button class="cell" type="button" role="gridcell" aria-label="Bottom middle square" data-index="7"></button>
+        <button class="cell" type="button" role="gridcell" aria-label="Bottom right square" data-index="8"></button>
+      </div>
+
+      <div class="controls" aria-label="Game controls">
+        <button id="reset-score" type="button">Reset Score</button>
+        <button id="switch-starter" type="button">O Starts Next</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
